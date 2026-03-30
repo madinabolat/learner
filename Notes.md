@@ -12,13 +12,12 @@ DI (Dependency Injection) is a way to implement IoC.
 At startup, Spring creates all the beans for us and stores in IoC container. 
 
 
+## 2. 
+@Service is similar to @Component when creating beans
+You can use objects from IoC (previously created using @Bean or @Component or other bean ways) through constructor. 
+When you have a class and you use previous bean, you add it to constructor. that way when you create an instance of this class - spring injects it for you wihtout you explicitly creating it. but you need to make this class a bean too otherwise you would need to pass this object, but if this class is a bean - spring does this class automatically for you so injects. 
 
+Lombok for writing succinctly - getters, setters can just do @Getter, @Setter. 
 
-
-    UserService interface
-    UserServiceImpl class
-
-
-registerUser(UserRegistrationDto userData):
-findByUsername(String username):
-
+DTO - data transfer object. 
+Transfers data from controller to service instead of using the actual object. Service will further save it to repo. 
