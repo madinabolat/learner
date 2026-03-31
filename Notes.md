@@ -63,3 +63,8 @@ REST - set of conventions for http methods. it returns response as JSON instead 
 
 to controller - we are injecting UserService interface. Spring will know to use the bean for UserServiceImpl because this implemetns the interface. 
 if there were two classes that implement this interface, then there will be error. We should do @Qualifier in this case. 
+
+      curl -H 'Content-Type: application/json' \
+      -d '{ "username":"madina","password":"pass2"}' \
+      -X POST \
+      localhost:8080/api/auth/login
