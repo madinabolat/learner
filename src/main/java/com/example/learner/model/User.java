@@ -19,6 +19,9 @@ public class User {
     @Setter
     private String passwordHash;
 
+    public User(){
+    }
+
     public User(String username, String passwordHash){
         this.username = username;
         this.passwordHash = passwordHash;
