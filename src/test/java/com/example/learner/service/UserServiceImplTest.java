@@ -66,5 +66,5 @@ class UserServiceImplTest {
         Mockito.when(userRepository.findByUsername(username)).thenReturn(null);
         assertNull(userService.findByUsername(username));
     }
-    
+
 }
