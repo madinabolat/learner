@@ -73,7 +73,7 @@ if there were two classes that implement this interface, then there will be erro
 
 # 4. Tests. CI/CD.
 
-# 1. Tests and Mockito
+# 1. Test UserService
 
 Mockito allows you to mock objects. When you test something, you don't need to create real objects that the class under test depends on. Instead, you create placeholder objects and tell them what to return when called. This way you isolate what you actually need to test.
 any(User.class) — a matcher that means "accept any object of this type." Only works as an argument matcher in when() and verify(), not as a return value.
@@ -84,3 +84,35 @@ Setup annotations:
 @ExtendWith(MockitoExtension.class) — on the test class, enables Mockito
 @Mock — creates a mock object
 @InjectMocks — creates a real instance of the class and injects the mocks into it. This is a plain Java object, not a Spring bean.
+
+# 2. Test Controller
+
+# 3. CI CD
+CI CD continuous integration continuous deployment
+
+We cant "trust" someone tested on their machine. whenever code is updated in common repo, we want to make sure it passes tests wihtout relying if individuals did tests locally.
+
+
+
+In Intellij, when we hit run, behind the scenes:
+- javac (compiler): human readable .java -> javac (compiler) turns into .class (bytecode). 
+  bytecode is WORA (Write once run anywhere). any mahcine that has JVM can run it. 
+- java (JVM): takes .class -> turns into machine code and executes on machine's cpu. here JIT (Just in Time compilation) - turns into machine code and runs real time
+
+if we have pom.xml, then we use a build tool (example: maven, gradle). 
+maven is needed to downlaod all libraries, packages, run tests and package everythign into jar file. 
+- mvn clean install: takes .java -> builds all libraries, packages -> compiles (instead of javac. mvn handles everythign on its won) -> builds jar file
+- java (JVM): runs jar file. 
+
+
+CI CD in guthub actions: 
+- create .github / workflows folder
+- create a yaml file, ex: jobs.yml
+- add all jobs
+on pull_requests
+download JDK 
+run code 
+run maven (builds, tests etc)
+
+github actions - copies the code on a vm (virtual machine), does what we do locally with intellij - downlaods JDK, copies code, runs maven, runs java 
+checkout code - means copies code (like git clone)
