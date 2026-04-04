@@ -68,3 +68,19 @@ if there were two classes that implement this interface, then there will be erro
       -d '{ "username":"madina","password":"pass2"}' \
       -X POST \
       localhost:8080/api/auth/login
+
+
+
+# 4. Tests. CI/CD.
+
+# 1. Tests and Mockito
+
+Mockito allows you to mock objects. When you test something, you don't need to create real objects that the class under test depends on. Instead, you create placeholder objects and tell them what to return when called. This way you isolate what you actually need to test.
+any(User.class) — a matcher that means "accept any object of this type." Only works as an argument matcher in when() and verify(), not as a return value.
+when(...).thenReturn(...) — stubs a mock to return a specific value when a method is called.
+Useful assertions: assertEquals, assertThrows, assertNull, verify.
+Setup annotations:
+
+@ExtendWith(MockitoExtension.class) — on the test class, enables Mockito
+@Mock — creates a mock object
+@InjectMocks — creates a real instance of the class and injects the mocks into it. This is a plain Java object, not a Spring bean.
