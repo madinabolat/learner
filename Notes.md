@@ -129,8 +129,6 @@ Thymeleaf vs React:
 thymeleaf is server-based. it is build on backend, then browser calls it. 
 react is client-based. it is making api calls to backend. fills in dynamically. 
 
-React.
-Vite is a build tool for React. like maven for java. 
 npm is package manager for node. node package manager. 
 nvm is version manager. node version manager. 
 
@@ -142,3 +140,21 @@ React is library. The language is Javascript.
 we did: 
 npm create vite@latest frontend -> to build react app
 npm run dev -> to run app 
+
+
+React app: 
+
+node_modules
+src > 
+  App.jsx
+  main.jsx
+  ...
+index.html
+...
+
+
+index.html - the shell
+references main.jsx
+main.jsx is like LearnerApplication.java - the main entry point
+it calls all the other methods (it mounts the App component into the HTML. It tells React "render App inside the root div.")
+here is is App.jsx
