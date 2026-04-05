@@ -158,3 +158,42 @@ references main.jsx
 main.jsx is like LearnerApplication.java - the main entry point
 it calls all the other methods (it mounts the App component into the HTML. It tells React "render App inside the root div.")
 here is is App.jsx
+
+
+
+
+React: 
+router
+make app.jsx a router
+then create pages it routes to
+
+react component
+react hook
+
+controlled vs uncontrolled component. controlled - the developer controls, uncontrolled - dom (browser) controls. 
+
+react forms - user input. 
+
+
+useState - returns an array
+const [username, setUsername] = useState('') -> means useState creates a variable username with initial value '', then it updates it by running setUsername function
+event - the browser creates this object by default
+
+    const handleNameChange = (event) => {
+        setUsername(event.target.value);
+    }
+    <label>
+        username
+        <input
+            type="text"
+            value={username}
+            onChange={handleNameChange}
+        />
+    </label>
+
+
+username variable. 
+onChange - calls handleNameChange
+handleNameChange - event.target is the input field element (the html box). .value graps the text in that box and setUsername puts that text into the username variable
+setUsername updates it, useState creates the username and setUsername at the start
+        
