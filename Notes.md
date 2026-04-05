@@ -1,7 +1,7 @@
 # Learner App
 
 
-# 3: User Registration & Login (Backend)
+# Week 3: User Registration & Login (Backend)
 ## 1. Beans
 IoC (Inversion of Control) container is a container that manages object creation for us. Instead of manually creating objects with new keyword, we can create beans (objects) that are stored in IoC container and can be used later.  
 DI (Dependency Injection) is a way to implement IoC. 
@@ -40,7 +40,7 @@ Unchecked - throw, but dont need to catch (can still catch if you want).
 Checked - throw, then must catch somewhere. 
 IllegalArgumentException is Unchecked. 
 
-# 3. AuthController
+## 3. AuthController
 
 
 CURL Command: 
@@ -73,7 +73,7 @@ if there were two classes that implement this interface, then there will be erro
 
 # 4. Tests. CI/CD.
 
-# 1. Test UserService
+## 1. Test UserService
 
 Mockito allows you to mock objects. When you test something, you don't need to create real objects that the class under test depends on. Instead, you create placeholder objects and tell them what to return when called. This way you isolate what you actually need to test.
 any(User.class) — a matcher that means "accept any object of this type." Only works as an argument matcher in when() and verify(), not as a return value.
@@ -85,9 +85,10 @@ Setup annotations:
 @Mock — creates a mock object
 @InjectMocks — creates a real instance of the class and injects the mocks into it. This is a plain Java object, not a Spring bean.
 
-# 2. Test Controller
+## 2. Test Controller
+TO DO 
 
-# 3. CI CD
+## 3. CI CD
 CI CD continuous integration continuous deployment
 
 We cant "trust" someone tested on their machine. whenever code is updated in common repo, we want to make sure it passes tests wihtout relying if individuals did tests locally.
@@ -116,3 +117,28 @@ run maven (builds, tests etc)
 
 github actions - copies the code on a vm (virtual machine), does what we do locally with intellij - downlaods JDK, copies code, runs maven, runs java 
 checkout code - means copies code (like git clone)
+
+
+# Week 4: Frontend
+
+## 1 
+TO DO 
+
+## 2 
+Thymeleaf vs React:
+thymeleaf is server-based. it is build on backend, then browser calls it. 
+react is client-based. it is making api calls to backend. fills in dynamically. 
+
+React.
+Vite is a build tool for React. like maven for java. 
+npm is package manager for node. node package manager. 
+nvm is version manager. node version manager. 
+
+node is a runtime environment that allows to run javascript in terminal, not in browser. 
+
+React is library. The language is Javascript. 
+
+
+we did: 
+npm create vite@latest frontend -> to build react app
+npm run dev -> to run app 
