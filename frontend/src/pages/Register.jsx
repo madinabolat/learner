@@ -15,6 +15,10 @@ function Register() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        fetch('http://localhost:8080/hello')
+            .then(response => response.text()) // Converts the response to JSON
+            .then(data => console.log(data))    // Handles the parsed data
+            .catch(error => console.error('Error:', error));
     }
 
   return (

@@ -197,3 +197,26 @@ onChange - calls handleNameChange
 handleNameChange - event.target is the input field element (the html box). .value graps the text in that box and setUsername puts that text into the username variable
 setUsername updates it, useState creates the username and setUsername at the start
         
+
+
+Connecting Frontend to Backend
+we write calls from frontend to backend in a similar way we did curl, postman. Backend doesnt care who calls, these are all clients - postman, curl, frontend. 
+
+In React: 
+we have variables like let name = "madina". 
+
+then functions. useState - runs the component again. then the variable gets updated. 
+Hooks are such special functions that use React's inner stuff. 
+
+in browser - Console and Network. Console is like a terminal for our javascript code. 
+Network - shows all calls. 
+
+fetch() - can be used to make api calls. 
+
+in browser, it was blocking, we need CORS. cross origin resource sharing. 
+backend blocks*(browser blocks - see below) - we dont want anyone be able to use our API endpoints. so we can add what localhost we allow - this shows this localhost is allowed to make an api call to thsi endpoint. but this is ok in dev - later we will add our domain so that these api endpoints can only be called from there. 
+we dont want to allow just everyone because other website might be calling it. 
+
+we can add specific cors allow to specific methods too. added a cors config - allowing everyone while in development:         registry.addMapping("/**");
+
+*"backend blocks" — it's actually the browser that blocks, not the backend. The backend processed the request fine (200 OK). The browser saw the response didn't have CORS headers and refused to let your JavaScript read it. The CORS config you added tells the backend to include those headers so the browser allows it.
