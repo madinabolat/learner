@@ -15,9 +15,17 @@ function Register() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        fetch('http://localhost:8080/hello')
-            .then(response => response.text()) // Converts the response to JSON
-            .then(data => console.log(data))    // Handles the parsed data
+        fetch('http://localhost:8080/api/auth/register', {
+            method: "POST",
+            body: JSON.stringify({
+                username, password //can also do username: username, password: password but since matchign skipping
+            }),
+            headers: {
+                "Content-type": "application/json"
+            }
+        })
+            .then(response => response.text())
+            .then(json => console.log(json))
             .catch(error => console.error('Error:', error));
     }
 
