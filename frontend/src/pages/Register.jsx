@@ -29,6 +29,8 @@ function Register() {
             .catch(error => console.error('Error:', error));
     }
 
+
+    //read about form validation: https://www.freecodecamp.org/news/how-to-validate-forms-in-react/
   return (
     <>
       <section>
