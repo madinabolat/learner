@@ -15,8 +15,22 @@ function Register() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        fetch('http://localhost:8080/api/auth/register', {
+            method: "POST",
+            body: JSON.stringify({
+                username, password //can also do username: username, password: password but since matchign skipping
+            }),
+            headers: {
+                "Content-type": "application/json"
+            }
+        })
+            .then(response => response.text())
+            .then(json => console.log(json))
+            .catch(error => console.error('Error:', error));
     }
 
+
+    //read about form validation: https://www.freecodecamp.org/news/how-to-validate-forms-in-react/
   return (
     <>
       <section>
