@@ -1,9 +1,11 @@
 import { useState } from 'react'
+import {useNavigate} from "react-router-dom";
 
 function Register() {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [error, setError] = useState('')
 
     const handleNameChange = (event) => {
         setUsername(event.target.value);
@@ -13,19 +15,34 @@ function Register() {
         setPassword(event.target.value);
     }
 
-    const handleSubmit = (event) => {
+    const navigate = useNavigate()
+
+    const handleRegister = (event) => {
         event.preventDefault();
         fetch('http://localhost:8080/api/auth/register', {
             method: "POST",
             body: JSON.stringify({
-                username, password //can also do username: username, password: password but since matchign skipping
+                username, password //can also do username: username, password: password but since matching skipping
             }),
             headers: {
                 "Content-type": "application/json"
             }
         })
-            .then(response => response.text())
-            .then(json => console.log(json))
+            .then (response => {
+                if (response.status === 201 ){
+                    response.text().then(text => {
+                        setError('')
+                        navigate("/successregister")
+                    }
+                    )
+                }
+                else {
+                    response.text().then(text => {
+                            setError(text)
+                        }
+                    )
+                }
+            })
             .catch(error => console.error('Error:', error));
     }
 
@@ -36,7 +53,7 @@ function Register() {
       <section>
         <div>
           <h1>Register</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleRegister}>
                 <label>
                     username
                     <input
@@ -54,6 +71,7 @@ function Register() {
                     />
                 </label>
                 <button type="submit">Submit</button>
+                <p>{error}</p>
             </form>
 
 
