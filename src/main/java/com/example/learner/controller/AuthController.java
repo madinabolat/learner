@@ -25,10 +25,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity registerUser(@Valid @RequestBody UserRegistrationDto userRegistrationDto, BindingResult bindingResult){
-        if (bindingResult.hasErrors()) {
-            return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
-        }
+    public ResponseEntity registerUser(@Valid @RequestBody UserRegistrationDto userRegistrationDto){
         try {
             userService.registerUser(userRegistrationDto);
         } catch (IllegalArgumentException e){
