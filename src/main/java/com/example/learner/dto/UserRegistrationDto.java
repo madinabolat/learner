@@ -1,11 +1,13 @@
 package com.example.learner.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.Length;
 
 public class UserRegistrationDto {
+    @NotBlank(message = "Username is mandatory")
     private String username;
-
+    @NotBlank(message = "password is mandatory")
+    @Length(min = 3, max = 15)
     private String password;
 
 
