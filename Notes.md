@@ -242,3 +242,21 @@ instead of handling exceptions in every controller, can add global exception han
 you can remove try catch from individual parts and global exception handler can handle it for you.
 can create custom exceptions (like UserAlreadyExistsException) so the handler knows exactly what happened.
 MethodArgumentNotValidException - what Spring throws when @Valid fails and there's no BindingResult.
+
+
+
+# Week 6
+constructor in controller - need this so Spring knows to pass in the ChatService bean. without it chatService is null and you get NullPointerException.
+service interface, then class that implements it.
+interface has methods public by default - because interface is a contract, methods need to be accessible.
+class implements and says public explicitly on methods.
+add @Service to the impl class - that way spring will know it is a bean and will create the object. since only one implementation, Spring auto picks it. if two, need @Qualifier.
+@RequestBody ChatRequestDto - tells Spring take incoming JSON and turn it into a Java object.
+send json {"request": "hello"} - Spring creates ChatRequestDto, calls setRequest("hello"). key name must match field name. that's why DTOs need getters and setters.
+curl -H 'Content-Type: application/json' \
+  -d '{"request": "hello"}' \
+  -X POST \
+  localhost:8080/api/chat
+return ResponseEntity.status(HttpStatus.OK).body(response);
+ResponseEntity is like an envelope. status code on the outside, response string inside.
+body(response) - this is what is being returned to frontend.
