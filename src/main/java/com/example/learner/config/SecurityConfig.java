@@ -11,12 +11,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class SecurityConfig {
 
     //add spring security filter 
+//https://www.geeksforgeeks.org/java/spring-security-filter-chain-with-example/
+
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
 }
-
-//https://www.geeksforgeeks.org/java/spring-security-filter-chain-with-example/
 
