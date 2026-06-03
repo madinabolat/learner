@@ -260,3 +260,11 @@ curl -H 'Content-Type: application/json' \
 return ResponseEntity.status(HttpStatus.OK).body(response);
 ResponseEntity is like an envelope. status code on the outside, response string inside.
 body(response) - this is what is being returned to frontend.
+
+
+SecurityFilterChain 
+Spring Security has a chain of filters - it applies to each http request. increases in security. 
+Set up in @Configuration, add a bean SecurityFilterChain - pass HttpSecurity object, returns http.build()
+inside can define which endpoint paths are allowed when authenticated and which are always allowed
+csrf cross site request forgery - when you are logged in, a malicious site can send requests from your browser.  by default enabled. 
+we disable - because we will use tokens. need a token to send request. 
