@@ -1,6 +1,7 @@
 package com.example.learner.util;
 
 
+import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -10,8 +11,11 @@ public class JwtUtil {
     private String secret;
 
     String generateToken(String username){
-        return "";
-        //@Value("${SECRET_KEY}")
+        return Jwts.builder()
+                .addClaims()
+                .setPayload()
+                .setIssuedAt()
+                .setExpiration();
     }
 
     boolean validateToken(String token){
