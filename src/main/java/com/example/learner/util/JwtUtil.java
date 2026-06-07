@@ -16,8 +16,7 @@ public class JwtUtil {
 
     String generateToken(String username){
         Date now = new Date();
-        //generate key: 
-//        Key key = secret.getBytes();
+        //generate key:
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(now)
