@@ -220,3 +220,51 @@ we dont want to allow just everyone because other website might be calling it.
 we can add specific cors allow to specific methods too. added a cors config - allowing everyone while in development:         registry.addMapping("/**");
 
 *"backend blocks" — it's actually the browser that blocks, not the backend. The backend processed the request fine (200 OK). The browser saw the response didn't have CORS headers and refused to let your JavaScript read it. The CORS config you added tells the backend to include those headers so the browser allows it.
+
+
+
+# Week 5
+Frontend
+UseState - you can save errors from backend through useState.
+setError(...) stores whatever you pass into it - like text from the backend response.
+to display it on page just put {error} in JSX.
+.then(...)
+.then(...)
+each then is getting input from previous. this is called a Promise chain.
+promise - means the result isn't ready yet, run this when it is. response.text() returns a promise so you do response.text().then(text => setError(text))
+fetch() - javascript version of curl. makes HTTP requests from the browser.
+every new page need to add to routes in App.jsx
+Backend
+Bean Validation - @NotBlank, @Length on DTO fields. @Valid on controller parameter triggers the check.
+BindingResult - catches validation errors inside the controller method. if you remove it, Spring throws MethodArgumentNotValidException instead.
+ControllerAdvice + ExceptionHandler
+instead of handling exceptions in every controller, can add global exception handler to handle at once.
+you can remove try catch from individual parts and global exception handler can handle it for you.
+can create custom exceptions (like UserAlreadyExistsException) so the handler knows exactly what happened.
+MethodArgumentNotValidException - what Spring throws when @Valid fails and there's no BindingResult.
+
+
+
+# Week 6
+constructor in controller - need this so Spring knows to pass in the ChatService bean. without it chatService is null and you get NullPointerException.
+service interface, then class that implements it.
+interface has methods public by default - because interface is a contract, methods need to be accessible.
+class implements and says public explicitly on methods.
+add @Service to the impl class - that way spring will know it is a bean and will create the object. since only one implementation, Spring auto picks it. if two, need @Qualifier.
+@RequestBody ChatRequestDto - tells Spring take incoming JSON and turn it into a Java object.
+send json {"request": "hello"} - Spring creates ChatRequestDto, calls setRequest("hello"). key name must match field name. that's why DTOs need getters and setters.
+curl -H 'Content-Type: application/json' \
+  -d '{"request": "hello"}' \
+  -X POST \
+  localhost:8080/api/chat
+return ResponseEntity.status(HttpStatus.OK).body(response);
+ResponseEntity is like an envelope. status code on the outside, response string inside.
+body(response) - this is what is being returned to frontend.
+
+
+SecurityFilterChain 
+Spring Security has a chain of filters - it applies to each http request. increases in security. 
+Set up in @Configuration, add a bean SecurityFilterChain - pass HttpSecurity object, returns http.build()
+inside can define which endpoint paths are allowed when authenticated and which are always allowed
+csrf cross site request forgery - when you are logged in, a malicious site can send requests from your browser.  by default enabled. 
+we disable - because we will use tokens. need a token to send request. 
