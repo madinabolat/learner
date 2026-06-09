@@ -32,8 +32,8 @@ public class JwtUtil {
     }
 
     boolean validateToken(String token){
-        Jwts.parser()
-                .parse(token)
+//        Jwts.parser()
+//                .parse(token)
 
         return false;
     }
