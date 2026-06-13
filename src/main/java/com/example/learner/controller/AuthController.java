@@ -4,6 +4,7 @@ package com.example.learner.controller;
 import com.example.learner.dto.UserLoginDto;
 import com.example.learner.dto.UserRegistrationDto;
 import com.example.learner.service.UserService;
+import com.example.learner.util.JwtUtil;
 import jakarta.validation.Valid;
 import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
@@ -19,9 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/auth")
 public class AuthController {
     private UserService userService;
+    private JwtUtil jwtUtil;
 
-    public AuthController(UserService userService){
+    public AuthController(UserService userService, JwtUtil jwtUtil){
         this.userService = userService;
+        this.jwtUtil = jwtUtil;
     }
 
     @PostMapping("/register")
@@ -36,9 +39,13 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity loginUser(@RequestBody UserLoginDto userLoginDto){
+
         try {
             if (userService.login(userLoginDto)){
-                return ResponseEntity.status(HttpStatus.ACCEPTED).body("User logged in.");
+                String token = jwtUtil.generateToken(userLoginDto.getUsername());
+//                return ResponseEntity.status(HttpStatus.ACCEPTED).body("User logged in.");
+                //add a map that will have both "User logged in" and token
+                return ResponseEntity.status(HttpStatus.ACCEPTED).body(token);
             } else {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Wrong password.");
             }
