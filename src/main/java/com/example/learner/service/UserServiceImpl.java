@@ -4,13 +4,17 @@ import com.example.learner.dto.UserLoginDto;
 import com.example.learner.dto.UserRegistrationDto;
 import com.example.learner.model.User;
 import com.example.learner.repository.UserRepository;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 //@Value("${API_KEY}")
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService, UserDetailsService {
     private BCryptPasswordEncoder passwordEncoder;
     private UserRepository userRepository;
 
@@ -41,6 +45,17 @@ public class UserServiceImpl implements UserService{
             throw new UsernameNotFoundException(userLoginDto.getUsername());
         } else {
             return passwordEncoder.matches(userLoginDto.getPassword(), user.getPasswordHash());
+        }
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = findByUsername(username);
+        if (user == null){
+            throw new UsernameNotFoundException(username);
+        } else {
+            UserDetails userDetails = new org.springframework.security.core.userdetails.User(username, user.getPasswordHash(), List.of());
+            return userDetails;
         }
     }
 }

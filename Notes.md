@@ -46,7 +46,7 @@ IllegalArgumentException is Unchecked.
 CURL Command: 
 
 curl -H 'Content-Type: application/json' \
-      -d '{ "username":"madina1","password":"pass"}' \
+      -d '{ "username":"madina","password":"pass"}' \
       -X POST \
       localhost:8080/api/auth/register
 
@@ -65,7 +65,7 @@ to controller - we are injecting UserService interface. Spring will know to use 
 if there were two classes that implement this interface, then there will be error. We should do @Qualifier in this case. 
 
       curl -H 'Content-Type: application/json' \
-      -d '{ "username":"madina","password":"pass2"}' \
+      -d '{ "username":"madina","password":"pass"}' \
       -X POST \
       localhost:8080/api/auth/login
 
@@ -268,3 +268,31 @@ Set up in @Configuration, add a bean SecurityFilterChain - pass HttpSecurity obj
 inside can define which endpoint paths are allowed when authenticated and which are always allowed
 csrf cross site request forgery - when you are logged in, a malicious site can send requests from your browser.  by default enabled. 
 we disable - because we will use tokens. need a token to send request. 
+
+
+JWT token
+JWT util, jwt authentication filter, add to security filter
+
+madinabolat@Madinas-Laptop-2 learner % curl -H 'Content-Type: application/json' \                                                                                
+      -d '{ "username":"madina","password":"pass"}' \
+      -X POST \
+      localhost:8080/api/auth/register
+User successfully registered.%                                                                                                                                                                                                          
+madinabolat@Madinas-Laptop-2 learner %       curl -H 'Content-Type: application/json' \                                                                                
+      -d '{ "username":"madina","password":"pass"}' \
+      -X POST \
+      localhost:8080/api/auth/login
+eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJtYWRpbmEiLCJpYXQiOjE3ODE0ODAwMTUsImV4cCI6MTc4MTQ4MzYxNX0.eplXot5mL6BehkH3CxbchCXDhKJESQy8KSWi8KO-0knTZE5NNlCiEM0rxqLzb3uQ%       
+
+
+curl -v -H 'Content-Type: application/json' \
+  -d '{"request": "hello"}' \
+  -X POST \
+  localhost:8080/api/chat
+
+
+  curl -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJtYWRpbmEiLCJpYXQiOjE3ODE0ODAwMTUsImV4cCI6MTc4MTQ4MzYxNX0.eplXot5mL6BehkH3CxbchCXDhKJESQy8KSWi8KO-0knTZE5NNlCiEM0rxqLzb3uQ%' \
+  -d '{"request": "hello"}' \
+  -X POST \
+  localhost:8080/api/chat

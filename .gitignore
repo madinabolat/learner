@@ -1,4 +1,4 @@
 .DS_STORE
 .idea/
 target/
-application.properties
+src/main/resources/application.properties
