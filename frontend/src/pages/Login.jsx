@@ -1,18 +1,6 @@
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 
-//username
-//password
-
-//if correct -> User logged in page
-//if not -> incorrect
-
-//protected route:
-//if authenticated -> chat component
-//if not -> go to /login
-
-
-
 function Login() {
 
 
@@ -46,6 +34,7 @@ function Login() {
             response.text().then(text => {
                   setError('')
                   localStorage.setItem("token", text)
+              //TO DO: token is not being saved
                   navigate("/chat")
                 }
             )
