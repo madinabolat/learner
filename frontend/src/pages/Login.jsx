@@ -19,6 +19,7 @@ function Login() {
   const navigate = useNavigate()
 
   const handleLogin = (event) => {
+      console.log("handleLogin called");
     event.preventDefault();
     fetch('http://localhost:8080/api/auth/login', {
       method: "POST",
@@ -30,11 +31,12 @@ function Login() {
       }
     })
         .then (response => {
+            console.log("status: ", response.status);
           if (response.status === 202 ){
             response.text().then(text => {
                   setError('')
                   localStorage.setItem("token", text)
-              //TO DO: token is not being saved
+                // console.log("token: ", text)
                   navigate("/chat")
                 }
             )
