@@ -19,7 +19,6 @@ function Login() {
   const navigate = useNavigate()
 
   const handleLogin = (event) => {
-      console.log("handleLogin called");
     event.preventDefault();
     fetch('http://localhost:8080/api/auth/login', {
       method: "POST",
@@ -36,7 +35,6 @@ function Login() {
             response.text().then(text => {
                   setError('')
                   localStorage.setItem("token", text)
-                // console.log("token: ", text)
                   navigate("/chat")
                 }
             )
