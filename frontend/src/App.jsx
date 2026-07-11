@@ -5,6 +5,7 @@ import Register from './pages/Register'
 import Login from './pages/Login'
 import Chat from './pages/Chat'
 import SuccessRegister from "./pages/SuccessRegister.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 function App() {
 
@@ -16,7 +17,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
             <Route path="/successregister" element={<SuccessRegister />} />
-          <Route path="/chat" element={<Chat />} />
+            <Route path="/chat" element={<ProtectedRoute><Chat /></ProtectedRoute>} />
         </Routes>
       </BrowserRouter>
   )

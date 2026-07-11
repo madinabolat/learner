@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 
 function Login() {
 
@@ -7,8 +8,11 @@ function Login() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+  const navigate = useNavigate()
+  const location = useLocation()
+  const message = location.state?.message
 
-  const handleNameChange = (event) => {
+    const handleNameChange = (event) => {
     setUsername(event.target.value);
   }
 
@@ -16,7 +20,7 @@ function Login() {
     setPassword(event.target.value);
   }
 
-  const navigate = useNavigate()
+
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -54,7 +58,9 @@ function Login() {
       <>
         <section>
           <div>
+
             <h1>LogIn</h1>
+              <p>{message}</p>
             <form onSubmit={handleLogin}>
               <label>
                 username
