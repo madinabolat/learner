@@ -15,6 +15,9 @@ function Chat () {
 
 
     return (
+        //a display area for messages
+        // a text input field
+        // "Send" button.
         <>
             <section>
                 <div>
