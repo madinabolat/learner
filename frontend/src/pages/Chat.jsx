@@ -1,33 +1,50 @@
+import {useState} from "react";
+
 function Chat () {
 
+    const [message, setMessage] = useState("")
+    const [messages, setMessages] = useState([])
+    const [error, setError] = useState('')
 
     const handleChat = (event) => {
         event.preventDefault();
+        console.log("handleChat called")
         fetch('http://localhost:8080/api/chat', {
             method: "POST",
-            body: JSON.stringify({
-            }),
+            body: JSON.stringify({message}),
             headers: {
-                "Content-type": "application/json"
+                "Content-type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("token")
+            }
+        }).then (response => {
+            if (response.status === 200 ){
+                response.text().then(text => {
+                    setMessages([...messages, message, text])
+                    setMessage("")
+                })
+            }
+            else {
+                response.text().then(text => {
+                        setError(text)
+                    }
+                )
             }
         })
+            .catch(error => console.error('Error:', error));
     }
 
 
     return (
-        //a display area for messages
-        // a text input field
-        // "Send" button.
         <>
             <section>
-                <div>
-                    <h1>Let's chat</h1>
+                <div className="message-history">
+                    {messages.map((msg, index) => <p key ={index}>{msg}</p>)}
                 </div>
-                <form onSubmit={handleChat}>
-                    <label>
-                        chat
-                    </label>
-                </form>
+
+                <textarea value={message} onChange={(e) => setMessage(e.target.value)}/>
+
+                <button onClick={handleChat}>Send</button>
+
             </section>
         </>
     )

@@ -1,0 +1,9 @@
+.chat {
+    width: 400px;
+}
+
+.message-history {
+    border: 1px solid black;
+    height: 300px;
+    overflow-y: auto;
+}
