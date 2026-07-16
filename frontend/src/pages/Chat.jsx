@@ -1,10 +1,14 @@
-import {useState} from "react";
-
+import {useEffect, useState, useRef} from "react";
 function Chat () {
 
     const [message, setMessage] = useState("")
     const [messages, setMessages] = useState([])
     const [error, setError] = useState('')
+    const bottomRef = useRef(null)
+
+    useEffect(() => {
+        bottomRef.current.scrollIntoView();
+    }, [messages]);
 
     const handleChat = (event) => {
         event.preventDefault();
@@ -39,6 +43,7 @@ function Chat () {
             <section>
                 <div className="message-history">
                     {messages.map((msg, index) => <p key ={index}>{msg}</p>)}
+                    <div ref={bottomRef}></div>
                 </div>
 
                 <textarea value={message} onChange={(e) => setMessage(e.target.value)}/>
