@@ -11,8 +11,8 @@ function Home () {
                 <button onClick={() => navigate("/register")}>
                     Register
                 </button>
-                <button>
-                    Sign in
+                <button onClick={() => navigate("/login")}>
+                    Log In
                 </button>
             </section>
         </>
