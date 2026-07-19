@@ -37,7 +37,6 @@ function Chat () {
             .catch(error => console.error('Error:', error));
     }
 
-
     return (
         <>
             <section>
@@ -45,11 +44,8 @@ function Chat () {
                     {messages.map((msg, index) => <p key ={index}>{msg}</p>)}
                     <div ref={bottomRef}></div>
                 </div>
-
                 <textarea value={message} onChange={(e) => setMessage(e.target.value)}/>
-
                 <button onClick={handleChat}>Send</button>
-
             </section>
         </>
     )
